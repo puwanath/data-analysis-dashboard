@@ -14,7 +14,7 @@ class LLMAnalyzer:
     def query_model(self, 
                     prompt: str, 
                     model: Optional[str] = None,
-                    temperature: float = 0.7,
+                    temperature: float = 0.3,
                     max_tokens: int = 2000) -> str:
         """Query the Ollama API with a prompt"""
         try:

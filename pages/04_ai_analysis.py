@@ -260,38 +260,66 @@ def show_custom_analysis(df: pd.DataFrame, model: str):
         'sample_data': st.checkbox("Include sample data", True)
     }
     
-    # Prepare context based on selections
-    context = "Please analyze this dataset:\n\n"
-    
-    if include_sections['basic_info']:
-        context += f"""Basic Information:
-        - Rows: {len(df)}
-        - Columns: {len(df.columns)}
-        - Column Types: {df.dtypes.to_dict()}\n\n"""
-        
-    if include_sections['statistics']:
-        context += f"""Statistical Summary:
-        {df.describe().to_string()}\n\n"""
-        
-    if include_sections['correlations']:
-        numeric_cols = df.select_dtypes(include=[np.number]).columns
-        if len(numeric_cols) > 1:
-            context += f"""Correlations:
-            {df[numeric_cols].corr().to_string()}\n\n"""
-            
-    if include_sections['sample_data']:
-        context += f"""Sample Data:
-        {df.head().to_string()}\n\n"""
-    
-    # Custom prompt
+    # Custom prompt input first
     prompt = st.text_area(
         "Enter your analysis prompt:",
         help="Describe what you want to analyze in the dataset"
     )
-    
-    if prompt:
-        if st.button("Run Analysis"):
+
+    def prepare_context():
+        context = "Please analyze this dataset:\n\n"
+        
+        if include_sections['basic_info']:
+            context += f"""Basic Information:
+            - Rows: {len(df)}
+            - Columns: {len(df.columns)}
+            - Column Types: {df.dtypes.to_dict()}\n\n"""
+            
+        if include_sections['statistics']:
+            # Filter statistics based on prompt keywords
+            stats_df = df.describe()
+            if prompt:
+                keywords = set(prompt.lower().split())
+                relevant_cols = [col for col in stats_df.columns 
+                               if any(kw in col.lower() for kw in keywords)]
+                if relevant_cols:
+                    stats_df = stats_df[relevant_cols]
+            context += f"""Statistical Summary:
+            {stats_df.to_string()}\n\n"""
+            
+        if include_sections['correlations']:
+            numeric_cols = df.select_dtypes(include=[np.number]).columns
+            if len(numeric_cols) > 1:
+                corr_df = df[numeric_cols].corr()
+                if prompt:
+                    # Filter correlations based on prompt keywords
+                    keywords = set(prompt.lower().split())
+                    relevant_cols = [col for col in corr_df.columns 
+                                   if any(kw in col.lower() for kw in keywords)]
+                    if relevant_cols:
+                        corr_df = corr_df[relevant_cols][relevant_cols]
+                context += f"""Correlations:
+                {corr_df.to_string()}\n\n"""
+                
+        if include_sections['sample_data']:
+            sample_df = df.head()
+            if prompt:
+                # Filter sample data based on prompt keywords
+                keywords = set(prompt.lower().split())
+                relevant_cols = [col for col in sample_df.columns 
+                               if any(kw in col.lower() for kw in keywords)]
+                if relevant_cols:
+                    sample_df = sample_df[relevant_cols]
+            context += f"""Sample Data:
+            {sample_df.to_string()}\n\n"""
+            
+        return context
+
+    # Add Run Analysis button
+    if st.button("Run Analysis", key="run_custom_analysis"):
+        if prompt:
             with st.spinner("Running analysis..."):
+                context = prepare_context()
                 full_prompt = context + f"\n{prompt}\n\nFormat the response in markdown."
                 analysis = llm_analyzer.query_model(full_prompt, model=model)
                 
@@ -309,6 +337,8 @@ def show_custom_analysis(df: pd.DataFrame, model: str):
                         'prompt': prompt,
                         'result': analysis
                     })
+        else:
+            st.warning("Please enter an analysis prompt first")
 
 def show_analysis_history():
     """Show analysis history"""
