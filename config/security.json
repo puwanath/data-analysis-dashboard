@@ -1,0 +1,182 @@
+{
+    "auth": {
+        "jwt": {
+            "secret_key": "15fCxhXpg3YTwiVt2QW96rAbCiNPHrzNKjTKhb0JVlg=",
+            "algorithm": "HS256",
+            "access_token_expire_minutes": 30,
+            "refresh_token_expire_days": 7
+        },
+        "password_policy": {
+            "min_length": 8,
+            "require_uppercase": true,
+            "require_lowercase": true,
+            "require_numbers": true,
+            "require_special": true,
+            "max_age_days": 90,
+            "prevent_reuse": true,
+            "previous_passwords_count": 5
+        },
+        "session": {
+            "timeout_minutes": 30,
+            "max_active_sessions": 3,
+            "max_failed_attempts": 3,
+            "lockout_minutes": 15,
+            "remember_me_days": 30
+        }
+    },
+    "encryption": {
+        "enabled": true,
+        "algorithm": "AES-256-GCM",
+        "key_rotation": {
+            "enabled": true,
+            "interval_days": 90,
+            "keep_previous_keys": 2
+        },
+        "sensitive_fields": [
+            "password",
+            "email",
+            "phone",
+            "credit_card",
+            "social_security",
+            "address"
+        ],
+        "hash_algorithm": "bcrypt",
+        "hash_rounds": 12
+    },
+    "access_control": {
+        "roles": {
+            "admin": {
+                "permissions": ["read", "write", "delete", "manage_users", "manage_settings"],
+                "description": "Full system access"
+            },
+            "analyst": {
+                "permissions": ["read", "write"],
+                "description": "Can analyze data and create reports"
+            },
+            "viewer": {
+                "permissions": ["read"],
+                "description": "Can only view data and reports"
+            }
+        },
+        "ip_whitelist": [],
+        "ip_blacklist": [],
+        "allowed_domains": ["*"],
+        "two_factor_auth": {
+            "enabled": false,
+            "methods": ["email", "authenticator"],
+            "required_for_roles": ["admin"],
+            "backup_codes_count": 10
+        }
+    },
+    "audit": {
+        "enabled": true,
+        "log_file": "logs/security_audit.log",
+        "events_to_log": [
+            "login",
+            "logout",
+            "failed_login",
+            "password_change",
+            "user_creation",
+            "role_change",
+            "data_export",
+            "settings_change",
+            "analysis_run"
+        ],
+        "retention_days": 90,
+        "alert_on": [
+            "multiple_failed_logins",
+            "unusual_activity",
+            "sensitive_data_access"
+        ]
+    },
+    "rate_limiting": {
+        "enabled": true,
+        "default_rate": {
+            "requests": 100,
+            "per_seconds": 60
+        },
+        "endpoints": {
+            "/api/auth/login": {
+                "requests": 5,
+                "per_seconds": 60
+            },
+            "/api/analysis": {
+                "requests": 20,
+                "per_seconds": 60
+            }
+        },
+        "by_ip": true,
+        "by_user": true,
+        "whitelist": []
+    },
+    "data_protection": {
+        "data_retention": {
+            "analysis_results_days": 30,
+            "user_data_days": 365,
+            "audit_logs_days": 90
+        },
+        "backup": {
+            "enabled": true,
+            "frequency": "daily",
+            "retention_copies": 7,
+            "encrypted": true
+        },
+        "export_restrictions": {
+            "max_rows": 100000,
+            "allowed_formats": ["csv", "xlsx", "json", "pdf"],
+            "require_approval": false,
+            "notify_on_export": true
+        }
+    },
+    "input_validation": {
+        "sanitize_html": true,
+        "allow_iframes": false,
+        "allowed_file_types": [
+            "csv",
+            "xlsx",
+            "xls",
+            "json",
+            "txt"
+        ],
+        "max_file_size_mb": 100,
+        "max_field_length": 1000,
+        "sql_injection_protection": true
+    },
+    "api_security": {
+        "require_https": true,
+        "cors": {
+            "enabled": true,
+            "allowed_origins": ["*"],
+            "allowed_methods": ["GET", "POST", "PUT", "DELETE"],
+            "allowed_headers": ["*"],
+            "expose_headers": ["Content-Length", "Content-Type"],
+            "max_age": 3600,
+            "allow_credentials": true
+        },
+        "api_keys": {
+            "enabled": true,
+            "expire_days": 90,
+            "key_length": 32
+        }
+    },
+    "monitoring": {
+        "security_alerts": {
+            "enabled": true,
+            "notification_channels": ["email", "log"],
+            "alert_on": [
+                "failed_logins",
+                "account_lockouts",
+                "permission_changes",
+                "unusual_export_activity",
+                "encryption_key_access"
+            ]
+        },
+        "activity_tracking": {
+            "enabled": true,
+            "track_user_agents": true,
+            "track_ip_addresses": true,
+            "track_session_duration": true,
+            "track_page_views": true
+        }
+    }
+}

@@ -1,0 +1,87 @@
+# Local LLM Models Configuration
+default_model: llama3.1
+
+models:
+  llama3.1:
+    description: "Meta's Llama 2 model"
+    parameters:
+      temperature: 0.7
+      max_tokens: 2000
+      top_p: 0.9
+      frequency_penalty: 0.0
+      presence_penalty: 0.0
+
+  mistral:
+    description: "Mistral 7B model"
+    parameters:
+      temperature: 0.7
+      max_tokens: 2000
+      top_p: 0.9
+      frequency_penalty: 0.0
+      presence_penalty: 0.0
+
+  codellama:
+    description: "Code-specialized Llama model"
+    parameters:
+      temperature: 0.5
+      max_tokens: 2000
+      top_p: 0.9
+      frequency_penalty: 0.0
+      presence_penalty: 0.0
+
+  vicuna:
+    description: "Vicuna model"
+    parameters:
+      temperature: 0.7
+      max_tokens: 2000
+      top_p: 0.9
+      frequency_penalty: 0.0
+      presence_penalty: 0.0
+
+# Analysis prompts templates
+prompts:
+  data_overview: |
+    As a data analyst, analyze this dataset and provide key insights:
+    
+    Dataset Info:
+    {dataset_info}
+    
+    Please provide:
+    1. Key observations about the data
+    2. Potential patterns or trends
+    3. Data quality issues if any
+    4. Recommendations for further analysis
+    5. Business insights and decision support recommendations
+
+  relationships: |
+    Analyze the relationships in this dataset:
+    
+    {relationships_info}
+    
+    Please provide:
+    1. Strong correlations identified
+    2. Potential causal relationships
+    3. Interesting patterns or clusters
+    4. Recommendations for feature engineering
+    5. Suggestions for further statistical analysis
+
+  visualization: |
+    As a data visualization expert, suggest visualizations for this dataset:
+    
+    {data_info}
+    
+    Please suggest:
+    1. Appropriate chart types for each variable
+    2. Interesting variable combinations to visualize
+    3. Advanced visualization techniques
+    4. Dashboard layout recommendations
+    5. Interactive features to consider
+
+# Response formatting
+output_format: markdown
+
+# Cache settings
+cache:
+  enabled: true
+  ttl: 3600  # seconds
+  max_size: 100  # MB

@@ -1,0 +1,395 @@
+/* Main Layout */
+.main {
+    padding: 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Header Styling */
+.stApp header {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #e9ecef;
+}
+
+/* Sidebar Styling */
+.css-1d391kg {
+    background-color: #f8f9fa;
+}
+
+/* Card Styling */
+.stCard {
+    background: white;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    margin-bottom: 1rem;
+}
+
+/* Button Styling */
+.stButton > button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    transition: background-color 0.2s;
+}
+
+.stButton > button:hover {
+    background-color: #0056b3;
+}
+
+/* Secondary Button */
+.secondary-button {
+    background-color: #6c757d !important;
+}
+
+.secondary-button:hover {
+    background-color: #545b62 !important;
+}
+
+/* Success Button */
+.success-button {
+    background-color: #28a745 !important;
+}
+
+.success-button:hover {
+    background-color: #218838 !important;
+}
+
+/* Alert Styling */
+.stAlert {
+    border-radius: 0.25rem;
+    margin-bottom: 1rem;
+}
+
+/* Info Alert */
+.stAlert.info {
+    background-color: #cce5ff;
+    border-color: #b8daff;
+    color: #004085;
+}
+
+/* Warning Alert */
+.stAlert.warning {
+    background-color: #fff3cd;
+    border-color: #ffeeba;
+    color: #856404;
+}
+
+/* Error Alert */
+.stAlert.error {
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    color: #721c24;
+}
+
+/* Success Alert */
+.stAlert.success {
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+    color: #155724;
+}
+
+/* Metric Styling */
+.metric-container {
+    background: white;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    text-align: center;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.metric-value {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #007bff;
+}
+
+.metric-label {
+    color: #6c757d;
+    font-size: 0.875rem;
+}
+
+/* Table Styling */
+.stDataFrame {
+    border: 1px solid #e9ecef;
+    border-radius: 0.25rem;
+}
+
+.stDataFrame td, .stDataFrame th {
+    padding: 0.75rem;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.stDataFrame thead th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+}
+
+/* Chart Container */
+.chart-container {
+    background: white;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+/* Tabs Styling */
+.stTabs {
+    margin-top: 1rem;
+}
+
+.stTab {
+    padding: 0.5rem 1rem;
+}
+
+/* File Uploader */
+.uploadedFile {
+    background-color: #f8f9fa;
+    border-radius: 0.25rem;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Progress Bar */
+.stProgress {
+    height: 0.5rem;
+    border-radius: 0.25rem;
+}
+
+.stProgress > div {
+    background-color: #007bff;
+}
+
+/* Tooltip */
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 200px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -100px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Custom Selectbox */
+.stSelectbox {
+    border-radius: 0.25rem;
+}
+
+.stSelectbox > div > div {
+    border-radius: 0.25rem;
+}
+
+/* Markdown Text */
+.markdown-text-container {
+    background-color: white;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.markdown-text-container h1,
+.markdown-text-container h2,
+.markdown-text-container h3 {
+    color: #2c3e50;
+    margin-bottom: 1rem;
+}
+
+.markdown-text-container p {
+    color: #34495e;
+    line-height: 1.6;
+}
+
+/* Dashboard Grid Layout */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.dashboard-item {
+    background: white;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+/* Analysis Section */
+.analysis-section {
+    background: white;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.analysis-section h3 {
+    color: #2c3e50;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid #e9ecef;
+    padding-bottom: 0.5rem;
+}
+
+/* Loading Animation */
+.loading-spinner {
+    width: 40px;
+    height: 40px;
+    margin: 100px auto;
+    background-color: #007bff;
+    border-radius: 100%;  
+    animation: sk-scaleout 1.0s infinite ease-in-out;
+}
+
+@keyframes sk-scaleout {
+    0% { 
+        transform: scale(0);
+    } 
+    100% {
+        transform: scale(1.0);
+        opacity: 0;
+    }
+}
+
+/* Custom Toggle Switch */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #007bff;
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .main {
+        padding: 0.5rem;
+    }
+    
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .metric-value {
+        font-size: 1.5rem;
+    }
+    
+    .stButton > button {
+        width: 100%;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .stButton, .stSelectbox, .uploadedFile {
+        display: none;
+    }
+    
+    .main {
+        padding: 0;
+    }
+    
+    .stDataFrame {
+        page-break-inside: avoid;
+    }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+    .stCard, .metric-container, .chart-container, 
+    .analysis-section, .markdown-text-container {
+        background-color: #2d3748;
+        color: #e2e8f0;
+    }
+    
+    .stDataFrame thead th {
+        background-color: #2d3748;
+    }
+    
+    .markdown-text-container h1,
+    .markdown-text-container h2,
+    .markdown-text-container h3 {
+        color: #e2e8f0;
+    }
+    
+    .markdown-text-container p {
+        color: #cbd5e0;
+    }
+}
+
+/* Animations */
+.fade-in {
+    animation: fadeIn 0.5s ease-in;
+}
+
+.slide-in {
+    animation: slideIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
